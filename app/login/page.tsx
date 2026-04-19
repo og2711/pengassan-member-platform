@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
-import { setViewerSession } from '@/lib/admin-auth'
+import { setViewerSession, setAdminSession } from '@/lib/admin-auth'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -39,7 +39,11 @@ export default function LoginPage() {
       return
     }
 
-    setViewerSession()
+    if (profile.role === 'admin') {
+      setAdminSession()
+    } else {
+      setViewerSession()
+    }
     router.push('/')
   }
 

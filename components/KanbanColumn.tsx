@@ -19,7 +19,7 @@ export default function KanbanColumn({ lane, issues, isAdmin, onAddCard, onEditC
   const { setNodeRef, isOver } = useDroppable({ id: lane.id })
 
   return (
-    <div className="flex flex-col w-72 shrink-0">
+    <div className="flex flex-col w-64 sm:w-72 shrink-0">
       <div
         className="flex items-center justify-between px-3 py-2 rounded-t-lg text-white font-semibold text-sm"
         style={{ backgroundColor: lane.color, boxShadow: `0 4px 14px 0 ${lane.color}99` }}

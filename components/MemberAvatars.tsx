@@ -12,6 +12,7 @@ export default function MemberAvatars({ currentUserId }: Props) {
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [uploading, setUploading] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({})
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function MemberAvatars({ currentUserId }: Props) {
   if (profiles.length === 0) return null
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center">
       {profiles.map((profile) => {
         const isOwn = profile.id === currentUserId
         const initials = (profile.full_name ?? '?')
@@ -70,29 +71,29 @@ export default function MemberAvatars({ currentUserId }: Props) {
           .slice(0, 2)
 
         return (
-          <div key={profile.id} className="relative group">
+          <div key={profile.id} className="relative group -ml-2 first:ml-0 hover:z-10 z-0 transition-all">
             <button
               onClick={() => handleAvatarClick(profile.id)}
-              title={isOwn ? `${profile.full_name} — click to change photo` : (profile.full_name ?? '')}
-              className={`w-9 h-9 rounded-full overflow-hidden border-2 flex items-center justify-center text-xs font-bold transition-all
-                ${isOwn ? 'border-white cursor-pointer hover:border-green-300 hover:scale-110' : 'border-white/50 cursor-default'}
+              className={`w-9 h-9 rounded-full overflow-hidden border-2 border-green-800 flex items-center justify-center text-xs font-bold transition-all group-hover:scale-125 group-hover:shadow-lg
+                ${isOwn ? 'cursor-pointer' : 'cursor-default'}
                 ${uploading && editingId === profile.id ? 'opacity-50' : ''}
-                ${profile.avatar_url ? 'bg-white' : 'bg-green-600'} text-white`}
+                ${profile.avatar_url && !imgErrors[profile.id] ? 'bg-white' : 'bg-green-600'} text-white`}
             >
-              {profile.avatar_url ? (
+              {profile.avatar_url && !imgErrors[profile.id] ? (
                 <Image
                   src={profile.avatar_url}
                   alt={profile.full_name ?? ''}
                   width={36}
                   height={36}
                   className="w-full h-full object-cover"
+                  onError={() => setImgErrors((prev) => ({ ...prev, [profile.id]: true }))}
                 />
               ) : (
                 initials
               )}
             </button>
 
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
               {profile.full_name ?? 'Member'}
               {isOwn && <span className="text-gray-400 ml-1">(you)</span>}
             </div>

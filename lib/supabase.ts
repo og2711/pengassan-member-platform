@@ -3,7 +3,17 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    persistSession: true,
+    detectSessionInUrl: false,
+  },
+  global: {
+    fetch: (url, options) =>
+      fetch(url, { ...options, signal: AbortSignal.timeout(10000) }),
+  },
+})
 
 export type Lane = {
   id: string
@@ -53,4 +63,19 @@ export type Recommendation = {
   message: string
   created_at: string
   status: 'pending' | 'reviewed'
+}
+
+export type EventType = 'meeting' | 'workshop' | 'seminar' | 'social' | 'union' | 'other'
+
+export type OrgEvent = {
+  id: string
+  title: string
+  type: EventType
+  date: string
+  time: string
+  location: string
+  description: string | null
+  attendees: string[]
+  pictures: string[]
+  created_at: string
 }

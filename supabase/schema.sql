@@ -59,6 +59,48 @@ create policy "Public insert recommendations" on recommendations for insert with
 create policy "Admin read recommendations" on recommendations for select using (auth.role() = 'authenticated');
 create policy "Admin update recommendations" on recommendations for update using (auth.role() = 'authenticated');
 
+-- Official profile overrides (bio + avatar, keyed by static official id)
+create table official_profiles (
+  id text primary key,
+  avatar_url text,
+  bio text,
+  updated_at timestamptz default now()
+);
+
+alter table official_profiles enable row level security;
+create policy "Public read official profiles" on official_profiles for select using (true);
+create policy "Admin write official profiles" on official_profiles for all using (auth.role() = 'authenticated');
+
+-- Storage bucket for official photos (run separately in Supabase dashboard):
+-- insert into storage.buckets (id, name, public) values ('officials', 'officials', true);
+-- create policy "Public read official photos" on storage.objects for select using (bucket_id = 'officials');
+-- create policy "Admin upload official photos" on storage.objects for insert with check (bucket_id = 'officials' and auth.role() = 'authenticated');
+-- create policy "Admin delete official photos" on storage.objects for delete using (bucket_id = 'officials' and auth.role() = 'authenticated');
+
+-- Chapter events
+create table events (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  type text check (type in ('meeting', 'workshop', 'seminar', 'social', 'union', 'other')) default 'meeting',
+  date text not null,
+  time text not null default '09:00',
+  location text not null default '',
+  description text,
+  attendees text[] default '{}',
+  pictures text[] default '{}',
+  created_at timestamptz default now()
+);
+
+alter table events enable row level security;
+create policy "Public read events" on events for select using (true);
+create policy "Admin write events" on events for all using (auth.role() = 'authenticated');
+
+-- Storage bucket for event pictures (run separately in Supabase dashboard):
+-- insert into storage.buckets (id, name, public) values ('events', 'events', true);
+-- create policy "Public read event pictures" on storage.objects for select using (bucket_id = 'events');
+-- create policy "Admin upload event pictures" on storage.objects for insert with check (bucket_id = 'events' and auth.role() = 'authenticated');
+-- create policy "Admin delete event pictures" on storage.objects for delete using (bucket_id = 'events' and auth.role() = 'authenticated');
+
 -- Seed default lanes
 insert into lanes (title, color, "order") values
   ('Unresolved', '#EF4444', 0),

@@ -8,6 +8,7 @@ import { isAdminSession, hasAnySession, clearAllSessions } from '@/lib/admin-aut
 import KanbanBoard from './KanbanBoard'
 import RecommendationForm from './RecommendationForm'
 import MemberAvatars from './MemberAvatars'
+import NavTabs from './NavTabs'
 
 type Props = {
   initialLanes: Lane[]
@@ -52,15 +53,15 @@ export default function KanbanBoardClient({ initialLanes, initialIssues }: Props
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-green-800 text-white shadow-md">
-        <div className="max-w-screen-xl mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="max-w-screen-xl mx-auto px-4 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 
           {/* Logo + title */}
           <div className="flex items-center gap-3">
-            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={48} height={48} style={{ height: '44px', width: 'auto' }} className="object-contain shrink-0" />
-            <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={48} height={48} style={{ height: '44px', width: 'auto' }} className="object-contain shrink-0" />
+            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
+            <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
             <div>
-              <h1 className="text-sm sm:text-2xl font-bold tracking-normal leading-tight">PENGASSAN NMDPRA - Enugu Chapter</h1>
-              <p className="text-green-300 text-s mt-0.5">Grievance & Issue Tracker</p>
+              <h1 className="text-sm sm:text-2xl font-bold tracking-normal leading-tight">Grievance & Issue Tracker</h1>
+              <p className="text-green-300 text-s mt-0.5">PENGASSAN NMDPRA - Enugu Chapter</p>
             </div>
           </div>
 
@@ -79,14 +80,6 @@ export default function KanbanBoardClient({ initialLanes, initialIssues }: Props
                 <span className="text-green-200 text-xs hidden sm:inline">{currentProfile.full_name}</span>
               </div>
             )}
-            {isAdmin && (
-              <button
-                onClick={() => router.push('/recommendations')}
-                className="text-green-200 hover:text-yellow-400 text-xs sm:text-sm border border-green-500 rounded-full px-2 sm:px-3 py-1 hover:border-yellow-400 transition-colors"
-              >
-                Recommendations
-              </button>
-            )}
             <span className="text-green-300 text-xs border border-green-500 rounded-full px-2 py-1">
               {isAdmin ? 'Admin' : 'Member'}
             </span>
@@ -94,6 +87,9 @@ export default function KanbanBoardClient({ initialLanes, initialIssues }: Props
               Sign Out
             </button>
           </nav>
+        </div>
+        <div className="max-w-7xl mx-auto px-4">
+          <NavTabs isAdmin={isAdmin} />
         </div>
       </header>
 

@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { isAdminSession } from '@/lib/admin-auth'
 import { Lane, Issue } from '@/lib/supabase'
 import IssueModal from '@/components/IssueModal'
+import NavTabs from '@/components/NavTabs'
 
 type Recommendation = {
   id: string
@@ -80,20 +81,14 @@ export default function RecommendationsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-green-800 text-white shadow-md">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold">Recommendations</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight drop-shadow-sm">Recommendations</h1>
             <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA</p>
           </div>
-          <button
-            onClick={() => router.push('/')}
-            className="text-green-200 hover:text-white text-sm transition-colors flex items-center gap-1"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Board
-          </button>
+        </div>
+        <div className="max-w-5xl mx-auto">
+          <NavTabs isAdmin={true} />
         </div>
       </header>
 

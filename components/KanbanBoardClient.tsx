@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Lane, Issue, Profile, supabase } from '@/lib/supabase'
 import { isAdminSession, hasAnySession, clearAllSessions } from '@/lib/admin-auth'
@@ -57,8 +58,10 @@ export default function KanbanBoardClient({ initialLanes, initialIssues }: Props
 
           {/* Logo + title */}
           <div className="flex items-center gap-3">
-            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
-            <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
+            <Link href="/" aria-label="Go to the Welcome page" className="flex items-center gap-3 shrink-0 rounded-lg hover:opacity-90 transition-opacity">
+              <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
+              <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
+            </Link>
             <div>
               <h1 className="text-sm sm:text-2xl font-bold tracking-normal leading-tight">Grievance & Issue Tracker</h1>
               <p className="text-green-300 text-s mt-0.5">PENGASSAN NMDPRA - Enugu Chapter</p>

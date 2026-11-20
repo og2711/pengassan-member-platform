@@ -3,7 +3,8 @@
 import { usePathname, useRouter } from 'next/navigation'
 
 const TABS = [
-  { label: 'Tracker',         path: '/',                adminOnly: false },
+  { label: 'Welcome',         path: '/',                adminOnly: false },
+  { label: 'Tracker',         path: '/tracker',         adminOnly: false },
   { label: 'Events',          path: '/events',          adminOnly: false },
   { label: 'Officials',       path: '/officials',       adminOnly: false },
   { label: 'Recommendations', path: '/recommendations', adminOnly: true  },

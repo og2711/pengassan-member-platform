@@ -84,7 +84,7 @@ export default function RecommendationsPage() {
         <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight drop-shadow-sm">Recommendations</h1>
-            <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA</p>
+            <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA - Enugu Chapter</p>
           </div>
         </div>
         <div className="max-w-5xl mx-auto">

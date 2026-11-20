@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The member assistant reads its knowledge files from disk at runtime.
+  outputFileTracingIncludes: {
+    '/api/assistant': ['./lib/knowledge/**/*'],
+  },
   images: {
     remotePatterns: [
       {

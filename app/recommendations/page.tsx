@@ -81,9 +81,9 @@ export default function RecommendationsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-green-800 text-white shadow-md">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight drop-shadow-sm">Recommendations</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight drop-shadow-sm">Recommendations</h1>
             <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA - Enugu Chapter</p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function RecommendationsPage() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8 space-y-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-10">
         {(Object.keys(grouped) as Recommendation['status'][]).map((statusKey) => {
           const items = grouped[statusKey]
           if (items.length === 0) return null

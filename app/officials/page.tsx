@@ -316,9 +316,9 @@ export default function OfficialsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-green-800 text-white shadow-md">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight drop-shadow-sm">Chapter Officials</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight drop-shadow-sm">Chapter Officials</h1>
             <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA — Enugu Chapter</p>
           </div>
         </div>
@@ -327,7 +327,7 @@ export default function OfficialsPage() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8 space-y-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-10">
         {/* Chapter banner */}
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
           <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} style={{ width: 'auto', height: '64px' }} className="object-contain shrink-0" />

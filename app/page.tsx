@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { hasAnySession, isAdminSession } from '@/lib/admin-auth'
 import NavTabs from '@/components/NavTabs'
+import { InstallAppButton } from '@/components/InstallPrompt'
 
 type QuickLink = {
   title: string
@@ -103,12 +104,15 @@ export default function WelcomePage() {
       <header className="bg-green-800 text-white shadow-md">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 flex items-center gap-3">
           <Link href="/" aria-label="Go to the Welcome page" className="flex items-center gap-3 shrink-0 rounded-lg hover:opacity-90 transition-opacity">
-            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
-            <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={64} height={64} style={{ height: '64px', width: 'auto' }} className="object-contain shrink-0" />
+            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} className="h-12 sm:h-16 w-auto object-contain shrink-0" />
+            <Image src="/NMDPRA Logo.png" alt="NMDPRA logo" width={64} height={64} className="h-12 sm:h-16 w-auto object-contain shrink-0" />
           </Link>
           <div>
             <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight drop-shadow-sm">Welcome</h1>
             <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA — Enugu Chapter</p>
+          </div>
+          <div className="ml-auto">
+            <InstallAppButton />
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -153,11 +157,13 @@ export default function WelcomePage() {
 
         {/* Assistant pointer */}
         <section className="bg-green-800 text-white rounded-xl shadow-sm p-6 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
-          <Image src="/assistant-avatar.png" alt="" width={80} height={80} className="w-20 h-20 rounded-full object-cover object-top border-2 border-white shrink-0" />
+          <div className="w-20 h-20 rounded-full bg-white border-2 border-white shrink-0 flex items-center justify-center p-2">
+            <Image src="/Pengassan Logo.png" alt="PENGASSAN logo" width={64} height={64} className="w-full h-full object-contain" />
+          </div>
           <div>
             <p className="font-bold text-lg">Have a question about your rights at work?</p>
             <p className="text-green-100 text-sm mt-1">
-              Tap the Chairman&rsquo;s photo at the bottom right of any page to ask The Comrades&rsquo;
+              Tap the round button at the bottom right of any page to ask The Comrades&rsquo;
               Assistant. It answers from the PENGASSAN Constitution and Nigerian labour law.
             </p>
           </div>

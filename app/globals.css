@@ -10,6 +10,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* One 1-second pulse, then a 4-second pause: once every 5 seconds. */
+  --animate-ping-slow: ping-slow 5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 1; }
+    20%, 100% { transform: scale(2); opacity: 0; }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

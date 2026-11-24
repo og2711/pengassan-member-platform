@@ -145,9 +145,9 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-green-800 text-white shadow-md">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight drop-shadow-sm">Events</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight drop-shadow-sm">Events</h1>
             <p className="text-green-300 text-xs mt-0.5">PENGASSAN NMDPRA — Enugu Chapter</p>
           </div>
           {isAdmin && (
@@ -167,7 +167,7 @@ export default function EventsPage() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         {/* Filter tabs */}
         <div className="flex items-center gap-2 mb-8">
           {(['all', 'upcoming', 'past'] as Filter[]).map((f) => (
